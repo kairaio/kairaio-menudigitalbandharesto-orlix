@@ -61,10 +61,10 @@
     return `ORDER DEMO MENU DIGITAL RESTO\n\nTipe : ${$('type').value}\nLokasi : ${$('location').value.trim()||'-'}\nFoto lokasi : ${photo}\nNomor Telepon/WhatsApp/Username Telegram : ${$('contact').value.trim()||'-'}\nPembayaran : ${$('payment').value}\nInfo jumlah jika kembalian : ${$('cashInfo').value.trim()||'-'}\n\nPesanan :\n${l.length?l.map((x,i)=>`${i+1}. ${x.name} x${x.qty} — ${usd(x.price*x.qty)}`).join('\n'):'-'}\n\nSubtotal : ${usd(subtotal())}\nPromo : ${promoQty()?`Gratis ${promoQty()} menu bonus`:'-'}\nTotal : ${usd(subtotal())}\n\nCatatan :\n${$('notes').value.trim()||'-'}`;
   };
 
-  // Telegram must go directly to KH Digital instead of the generic share dialog.
+  // Telegram opens KH Digital chat with the complete order prefilled.
   window.sendTG = function sendTelegramKH() {
     if (!lines().length) return alert('Tambahkan pesanan terlebih dahulu.');
-    window.open('https://t.me/kh_digital', '_blank');
+    window.open(`https://t.me/kh_digital?text=${encodeURIComponent(message())}`, '_blank');
   };
 
   // WhatsApp destination requested by owner.
