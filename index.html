@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#7d170e">
+<title>BANDHA RESTO • Digital Menu</title>
+<style>
+:root{--bg:#260503;--panel:#68140b;--red:#b82015;--gold:#ffbd27;--cream:#fff4e7;--dark:#35110b;--green:#19a85c;--blue:#229ed9;--line:rgba(255,255,255,.14)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#fff;background:radial-gradient(circle at 80% 0,#73170d 0,transparent 27%),linear-gradient(#260503,#3e0905 45%,#210402)}button,input,textarea,select{font:inherit}.wrap{width:min(1180px,calc(100% - 20px));margin:auto}.hero{margin-top:12px;min-height:350px;border:1px solid var(--line);border-radius:26px;overflow:hidden;background:linear-gradient(90deg,rgba(28,3,2,.95),rgba(67,8,4,.82) 57%,rgba(90,15,8,.45)),url('assets/hero-chef.jpg') left center/430px auto no-repeat;box-shadow:0 18px 45px #0007}.hero-in{width:min(760px,73%);margin-left:auto;padding:32px}.brand{font-size:clamp(38px,6vw,70px);font-weight:1000;color:var(--gold);line-height:.92;text-shadow:0 5px 0 #65120b}.halal{font-weight:900;margin-top:8px}.promo{font-size:clamp(30px,5vw,58px);font-weight:1000;margin:17px 0 9px}.rule{background:#1d0202b8;border:1px solid #f6ad3555;border-radius:13px;padding:10px 13px;margin:7px 0;font-weight:850}.rule b{color:var(--gold)}.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.meta span{background:#ffffff12;border:1px solid var(--line);padding:8px 10px;border-radius:999px;font-size:13px;font-weight:750}.nav{position:sticky;top:0;z-index:20;margin-top:12px;background:#2d0503ed;backdrop-filter:blur(14px);padding:10px;border:1px solid var(--line);border-radius:17px}.search{width:100%;border:0;outline:0;border-radius:11px;padding:13px 15px;background:#fff9f1;color:var(--dark)}.tabs{display:flex;gap:7px;overflow:auto;padding-top:9px}.tab{white-space:nowrap;border:1px solid var(--line);background:#6b140b;color:#fff;border-radius:12px;padding:9px 11px;font-weight:800;cursor:pointer}.tab.active{background:linear-gradient(#e23a28,#aa190f);border-color:#f49847}.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;margin:16px 0 30px;align-items:start}.section{background:linear-gradient(#7a180e,#4b0c06);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 12px 30px #0004}.section h2{margin:0 0 12px;color:var(--gold)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{overflow:hidden;border-radius:15px;background:var(--cream);color:var(--dark);border:1px solid #fff;box-shadow:0 8px 18px #0003}.card img{width:100%;height:145px;object-fit:cover;display:block}.body{padding:10px}.card h3{font-size:14px;line-height:1.2;margin:0 0 7px;min-height:34px;text-transform:uppercase}.note{font-size:11px;color:#7d3b2c;margin-bottom:6px}.bottom{display:flex;align-items:center;justify-content:space-between;gap:7px}.price{color:#a91910;font-size:18px;font-weight:1000}.add{border:0;border-radius:9px;padding:8px 9px;background:linear-gradient(#ef3b29,#b31a11);color:#fff;font-weight:900;cursor:pointer}.cart{position:sticky;top:99px;background:var(--cream);color:var(--dark);border-radius:19px;overflow:hidden;box-shadow:0 18px 35px #0005}.cart-head{padding:14px;background:#f7dfcd;display:flex;justify-content:space-between;align-items:center}.badge{background:#b51e14;color:#fff;width:29px;height:29px;border-radius:50%;display:grid;place-items:center;font-weight:900}.cart-body{padding:13px}.cart-item{display:grid;grid-template-columns:50px 1fr auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid #e5cdbb}.cart-item img{width:50px;height:50px;border-radius:8px;object-fit:cover}.cart-item b{font-size:13px}.qty{display:flex;align-items:center;gap:5px}.qty button{width:25px;height:25px;border:1px solid #dec2ad;background:#fff;border-radius:7px}.row{display:flex;justify-content:space-between;margin:8px 0}.total{font-size:21px;font-weight:1000}.promo-ok{background:#fff8e7;border:1px solid #e9bf74;border-radius:10px;padding:9px;margin:8px 0}.checkout{margin-top:10px;padding:11px;background:linear-gradient(#b71e13,#811008);color:#fff;border-radius:14px}.checkout label{display:block;font-size:12px;font-weight:850;margin:8px 0 4px}.checkout input,.checkout textarea,.checkout select{width:100%;border:0;border-radius:8px;padding:9px}.checkout textarea{min-height:56px;resize:vertical}.loc{width:100%;margin-top:6px;padding:9px;border:1px solid #ffc87e;border-radius:8px;background:#fff8ee;color:#88180f;font-weight:900}.preview{white-space:pre-wrap;margin-top:8px;padding:9px;border-radius:9px;background:#fff8ef;color:var(--dark);font-size:11px;max-height:190px;overflow:auto}.actions{display:grid;gap:6px;margin-top:8px}.actions button{border:0;border-radius:9px;padding:10px;color:white;font-weight:950;cursor:pointer}.wa{background:var(--green)}.tg{background:var(--blue)}.voucher{margin-top:14px;background:linear-gradient(#72150c,#4b0b06);border:1px solid var(--line);border-radius:20px;padding:15px}.voucher-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.vc{background:#fff4e7;color:var(--dark);border-radius:12px;padding:12px}.vc b{display:block;color:#a91a11}.footer{margin:16px 0 28px;padding:24px;min-height:155px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(90deg,#571008,#76150c 58%,rgba(95,15,7,.45)),url('assets/chef-footer.jpg') right center/250px auto no-repeat}.footer h2{color:var(--gold);margin:0 0 7px}@media(max-width:980px){.layout{grid-template-columns:1fr}.cart{position:relative;top:auto}.hero{background-position:left top;background-size:270px auto}.hero-in{width:100%;padding:205px 18px 20px}}@media(max-width:650px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card img{height:120px}.voucher-grid{grid-template-columns:1fr}.brand{font-size:42px}.promo{font-size:34px}}
+</style>
+</head>
+<body><div class="wrap">
+<section class="hero"><div class="hero-in"><div class="brand">BANDHA RESTO 🔥</div><div class="halal">☪️ 100% HALAL</div><div class="promo">🤩 PROMO AGUSTUS</div><div class="rule">Orderan <b>750B</b> FREE 1 NASI GURIH TELUR DADAR</div><div class="rule">Kelipatan <b>1500B</b> FREE 2 bungkus dan seterusnya • Gaskan kak!</div><div class="meta"><span>🕕 OPEN 18:00 - 09:00</span><span>📱 WA 1 +62-81992310576</span><span>📱 WA 2 +62-87718195248</span><span>✈️ BANDHARESTO</span></div></div></section>
+<div class="nav"><input id="search" class="search" placeholder="🔎 Cari menu: ayam, cumi, rendang, indomie..."><div id="tabs" class="tabs"></div></div>
+<div class="layout"><main><section class="section"><h2 id="categoryTitle">📢 MENU BARU</h2><div id="grid" class="grid"></div></section>
+<section class="voucher"><h2>🎫 VOUCHER MAKAN BANDHA RESTO</h2><div class="voucher-grid"><div class="vc"><b>VC 30 + FREE 1</b>+ Es Teh Manis 1 = 2.350B</div><div class="vc"><b>VC 60 + FREE 2</b>+ Es Teh Manis 2 = 4.700B</div><div class="vc"><b>VC 90 + FREE 3</b>+ Es Teh Manis 3 = 7.000B</div><div class="vc"><b>VC 120 + FREE 4</b>+ Es Teh Manis 4 = 9.300B</div><div class="vc"><b>VC 150 + FREE 5</b>+ Es Teh Manis 5 = 11.250B</div></div><p><b>‼️ VC BERLAKU UNTUK SEMUA MENU.</b> 1 VC berlaku untuk menu sampai 85B.</p></section></main>
+<aside class="cart"><div class="cart-head"><b>🛒 Keranjang Pesanan</b><span id="count" class="badge">0</span></div><div class="cart-body"><div id="cartItems">Belum ada pesanan.</div><div class="row"><span>Subtotal</span><b id="subtotal">0B</b></div><div id="promoBox"></div><div class="row total"><span>Total</span><span id="total">0B</span></div><div class="checkout"><b>🔥 PESAN SEKARANG</b><label>Tipe</label><select id="type"><option>Delivery</option><option>Pickup</option><option>Makan di Tempat</option></select><label>Lokasi</label><textarea id="location" placeholder="Alamat / lokasi"></textarea><button class="loc" onclick="getLocation()">📍 Ambil Lokasi Saya</button><label>Foto lokasi</label><input id="photo" type="file" accept="image/*"><label>Nomor Telepon / WhatsApp / Username Telegram</label><input id="contact" placeholder="+855... / +62... / @username"><label>Pembayaran</label><select id="payment"><option>Cash</option><option>Voucher</option></select><label>Info jumlah jika kembalian</label><input id="cashInfo" placeholder="Contoh: bayar 500B"><label>Catatan</label><textarea id="notes" placeholder="Pedas sedang, tanpa sambal, dll"></textarea><div id="preview" class="preview"></div><div class="actions"><button class="wa" onclick="sendWA('6281992310576')">ORDER VIA WHATSAPP 1</button><button class="wa" onclick="sendWA('6287718195248')">ORDER VIA WHATSAPP 2</button><button class="tg" onclick="sendTG()">ORDER VIA TELEGRAM</button></div></div></div></aside></div>
+<section class="footer"><h2>TERIMA KASIH ❤️</h2><p>Selamat menikmati hidangan BANDHA RESTO • Harga terjangkau • Porsi melimpah • Rasa juara</p></section></div>
+<script>
+const raw=`Menu Baru|Cumi Pedas Telur Crispy|120|food-cumi.jpg
+Menu Baru|Ayam Suwir Telur Crispy|100|food-ayam-suwir.jpg
+Menu Baru|Cumi Saos Padang|120|food-cumi-padang.jpg
+Menu Baru|Udang Saos Padang|120|food-udang.jpg
+Menu Baru|Indomie Belacan Seafood|100|food-indomie.jpg
+Menu Baru|Indomie Bangladesh|100|food-indomie.jpg
+Menu Baru|Nasi Goreng Simangungsong|100|food-hemat4.jpg
+Menu Baru|Nasi Goreng Halilintar|100|food-hemat3.jpg
+Menu Baru|Nasi Cumi/Udang Tauco|120|food-udang.jpg
+Spesial Hari Ini|Ayam Cabe Tempong Pedas|100|food-tempong.jpg
+Spesial Hari Ini|SUPHAINAM|0|food-suphainam.jpg|Tanya Harga
+Hemat Dompet|Nasi Perang Telur Dadar|40|food-hemat1.jpg
+Hemat Dompet|Nasi Perang Ayam Goreng|50|food-hemat2.jpg
+Hemat Dompet|Nasi Perang Ayam Suwir|50|food-hemat3.jpg
+Hemat Dompet|Nasi Perang Rendang Sapi Suwir|60|food-hemat4.jpg
+Nasi Padang|Telur Bulat Balado / Dadar / Matasapi|80|food-hemat1.jpg
+Nasi Padang|Dadar Padang|100|food-hemat1.jpg
+Nasi Padang|Ayam Goreng|110|food-hemat2.jpg
+Nasi Padang|Lele Goreng|110|food-tempong.jpg
+Nasi Padang|Nila Goreng|110|food-tempong.jpg
+Nasi Padang|Gembung Goreng|110|food-tempong.jpg
+Nasi Padang|Tongkol Goreng|110|food-tempong.jpg
+Nasi Padang|Rendang Sapi|130|food-hemat4.jpg
+Nasi Urap|Dadar / Matasapi / Bulat Balado|90|food-hemat1.jpg
+Nasi Urap|Barendo / Dadar Padang|100|food-hemat1.jpg
+Nasi Urap|Ayam Kalasan|120|food-hemat2.jpg
+Nasi Uduk|Dadar / Matasapi / Bulat Balado|80|food-hemat1.jpg
+Nasi Uduk|Perkedel|90|food-hemat1.jpg
+Nasi Uduk|Gembung / Ayam / Lele Goreng|110|food-hemat2.jpg
+Lontong|Pecal|80|food-suphainam.jpg
+Lontong|Sayur Dadar / Matasapi / Bulat Balado|80|food-suphainam.jpg
+Lontong|Sayur Perkedel|90|food-suphainam.jpg
+Lontong|Ketoprak Jakarta|100|food-suphainam.jpg
+Nasi Paket|Ayam Geprek Mayonese|70|food-tempong.jpg
+Nasi Paket|Kulit Ayam Krispy|70|food-hemat2.jpg
+Nasi Paket|Ayam Krispi|70|food-hemat2.jpg
+Nasi Paket|Ayam Geprek Penger (Cabe Bawang / Ijo / Belacan / Matah)|70|food-tempong.jpg
+Nasi Paket|Tempe Geprek (Cabe Bawang / Ijo / Belacan / Matah)|70|food-tempong.jpg
+Nasi Paket|Ceker Mercon|70|food-tempong.jpg
+Nasi Paket|Telur Dadar / Matasapi / Bulat Gulai / Balado|70|food-hemat1.jpg
+Nasi Paket|Nasi Sarden + Matasapi|80|food-hemat1.jpg
+Nasi Paket|Nasi Dencis Balado|90|food-tempong.jpg
+Nasi Paket|Ampela Kentang Balado|85|food-tempong.jpg
+Nasi Paket|Udang Kentang Balado|100|food-udang.jpg
+Nasi Paket|Cumi Kentang Balado|100|food-cumi-padang.jpg
+Nasi Paket|Udang Goreng Tepung|100|food-udang.jpg
+Nasi Paket|Cumi Goreng Tepung|100|food-cumi.jpg
+Nasi Paket|Ikan Gembung Goreng (Cabe Bawang / Ijo / Belacan / Matah)|100|food-tempong.jpg
+Nasi Paket|Sapi Balado (Cabe Merah / Ijo)|120|food-hemat4.jpg
+Nasi Paket|Iga Balado (Cabe Ijo / Merah)|120|food-hemat4.jpg
+Paket Kangkung Belacan|Kulit Ayam Krispy|90|food-hemat2.jpg
+Paket Kangkung Belacan|Ayam Geprek Penger|90|food-tempong.jpg
+Paket Kangkung Belacan|Ayam Krispi|90|food-hemat2.jpg
+Paket Kangkung Belacan|Telur Dadar / Matasapi / Bulat|90|food-hemat1.jpg
+Paket Kangkung Belacan|Nila Goreng|120|food-tempong.jpg
+Paket Kangkung Belacan|Gembung Goreng|120|food-tempong.jpg
+Paket Kangkung Belacan|Ayam Goreng|120|food-hemat2.jpg
+Paket Kangkung Belacan|Lele Goreng|120|food-tempong.jpg
+Paket Kangkung Belacan|Udang Goreng Tepung|120|food-udang.jpg
+Paket Kangkung Belacan|Cumi Goreng Tepung|120|food-cumi.jpg
+Nasi Sop|Iga Sapi|120|food-suphainam.jpg
+Nasi Sop|Sapi|120|food-suphainam.jpg
+Nasi Sop|Ayam|100|food-suphainam.jpg
+Lauk Bakar|Iga|130|food-tempong.jpg
+Lauk Bakar|Ayam|110|food-tempong.jpg
+Lauk Bakar|Ikan Nila|110|food-tempong.jpg
+Lauk Bakar|Ikan Gembung|110|food-tempong.jpg
+Lauk Bakar|Lele|110|food-tempong.jpg
+Penyetan|Ayam|100|food-tempong.jpg|Nasi Uduk +5B
+Penyetan|Lele|100|food-tempong.jpg|Nasi Uduk +5B
+Penyetan|Nila|100|food-tempong.jpg|Nasi Uduk +5B
+Cha-Cha|NASGOR / MICHA / MIETIAW / BIHUN / MIE KUNING / IFUMIE - TELUR|85|food-indomie.jpg|Jumbo 100B
+Cha-Cha|NASGOR / MICHA / MIETIAW / BIHUN / MIE KUNING / IFUMIE - SEAFOOD|100|food-indomie.jpg|VC +15B • Jumbo 115B
+Cha-Cha|NASGOR / MICHA / MIETIAW / BIHUN / MIE KUNING / IFUMIE - GILA|90|food-indomie.jpg|VC +5B • Jumbo 105B
+Cha-Cha|NASGOR / MICHA / MIETIAW / BIHUN / MIE KUNING / IFUMIE - AYAM|100|food-indomie.jpg|VC +15B • Jumbo 110B
+Cha-Cha|Indomie Kuah Penatapan|80|food-indomie.jpg
+Cha-Cha|Nasi Goreng Teri Kampung|100|food-indomie.jpg
+Cha-Cha|Nasi Goreng Rendang|100|food-indomie.jpg
+Cemilan|Tahu Isi (1 PCS)|25|food-hemat1.jpg
+Cemilan|Pisang Coklat (1 PCS)|25|food-hemat1.jpg
+Cemilan|Bakwan Sayur (1 PCS)|25|food-hemat1.jpg
+Cemilan|Risol Sayur (1 PCS)|25|food-hemat1.jpg
+Cemilan|Bubur Kacang Ijo|50|food-suphainam.jpg
+Cemilan|Tempe Goreng (Isi 10)|60|food-hemat1.jpg
+Cemilan|Tahu Goreng (Isi 10)|60|food-hemat1.jpg
+Cemilan|Sosis Bakar (Isi 3 Tusuk)|70|food-tempong.jpg
+Cemilan|Bakso Ayam / Sapi / Ikan Bakar (Isi 3 Tusuk)|70|food-tempong.jpg
+Tambahan|Telor Bulat|20|food-hemat1.jpg
+Tambahan|Telor Matasapi|20|food-hemat1.jpg
+Tambahan|Telor Dadar|20|food-hemat1.jpg
+Tambahan|Perkedel|40|food-hemat1.jpg
+Tambahan|Nasi Putih|20|food-hemat1.jpg
+Tambahan|Nasi Uduk|25|food-hemat1.jpg
+Tambahan|Teh Manis Dingin|30|food-cumi.jpg
+Tambahan|Teh Manis Panas|25|food-cumi.jpg
+Tambahan|Wedang Jahe|60|food-cumi.jpg
+Tambahan|Wedang Jahe Susu|70|food-cumi.jpg
+Tambahan|Thai Tea|60|food-cumi.jpg
+Tambahan|Gulai Daun Ubi / Kangkung Belacan|45|food-suphainam.jpg`;
+const menu=raw.trim().split('\n').map((r,i)=>{const [cat,name,price,img,note='']=r.split('|');return{id:i+1,cat,name,price:+price,img:'assets/'+img,note}});const cats=[...new Set(menu.map(x=>x.cat))];let active=cats[0],cart={};const $=id=>document.getElementById(id);
+function renderTabs(){$('tabs').innerHTML=cats.map(c=>`<button class="tab ${c===active?'active':''}" onclick='setCat(${JSON.stringify(c)})'>${c}</button>`).join('')}function setCat(c){active=c;renderTabs();renderMenu()}
+function renderMenu(){const q=$('search').value.trim().toLowerCase();const items=menu.filter(m=>q?m.name.toLowerCase().includes(q):m.cat===active);$('categoryTitle').textContent=q?'🔎 HASIL PENCARIAN':'📢 '+active.toUpperCase();$('grid').innerHTML=items.map(m=>`<article class="card"><img src="${m.img}" alt="${m.name}"><div class="body"><h3>${m.name}</h3>${m.note?`<div class="note">${m.note}</div>`:''}<div class="bottom"><span class="price">${m.price?m.price+'B':'Tanya Harga'}</span><button class="add" onclick="addItem(${m.id})">+ TAMBAH</button></div></div></article>`).join('')||'<p>Menu tidak ditemukan.</p>'}
+function addItem(id){const m=menu.find(x=>x.id===id);if(!cart[id])cart[id]={...m,qty:0};cart[id].qty++;renderCart()}function qty(id,d){cart[id].qty+=d;if(cart[id].qty<=0)delete cart[id];renderCart()}function lines(){return Object.values(cart)}function subtotal(){return lines().reduce((s,x)=>s+x.price*x.qty,0)}function promoQty(){return Math.floor(subtotal()/750)}
+function renderCart(){const l=lines();$('count').textContent=l.reduce((s,x)=>s+x.qty,0);$('cartItems').innerHTML=l.length?l.map(x=>`<div class="cart-item"><img src="${x.img}"><div><b>${x.name}</b><div>${x.price?x.price+'B':'Tanya Harga'}</div></div><div class="qty"><button onclick="qty(${x.id},-1)">−</button><b>${x.qty}</b><button onclick="qty(${x.id},1)">+</button></div></div>`).join(''):'Belum ada pesanan.';const s=subtotal(),p=promoQty();$('subtotal').textContent=s+'B';$('total').textContent=s+'B';$('promoBox').innerHTML=p?`<div class="promo-ok">🎁 GRATIS ${p}x Nasi Gurih Telur Dadar</div>`:'';updatePreview()}
+function message(){const l=lines(),photo=$('photo').files?.[0]?.name||'Belum dilampirkan';return `🔥 ORDER BANDHA RESTO\n\nTipe : ${$('type').value}\nLokasi : ${$('location').value.trim()||'-'}\nFoto lokasi : ${photo}\nNomor Telepon/WhatsApp/Username Telegram : ${$('contact').value.trim()||'-'}\nPembayaran : ${$('payment').value}\nInfo jumlah jika kembalian : ${$('cashInfo').value.trim()||'-'}\n\nPesanan :\n${l.length?l.map((x,i)=>`${i+1}. ${x.name} x${x.qty} — ${x.price*x.qty}B`).join('\n'):'-'}\n\nSubtotal : ${subtotal()}B\nPromo : ${promoQty()?`Gratis ${promoQty()} Nasi Gurih Telur Dadar`:'-'}\nTotal : ${subtotal()}B\n\nCatatan :\n${$('notes').value.trim()||'-'}`}
+function updatePreview(){$('preview').textContent=message()}function sendWA(phone){if(!lines().length)return alert('Tambahkan pesanan terlebih dahulu.');window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message())}`,'_blank')}function sendTG(){if(!lines().length)return alert('Tambahkan pesanan terlebih dahulu.');window.open(`https://t.me/share/url?url=&text=${encodeURIComponent(message())}`,'_blank')}function getLocation(){if(!navigator.geolocation)return alert('Browser tidak mendukung lokasi.');navigator.geolocation.getCurrentPosition(p=>{$('location').value=`https://maps.google.com/?q=${p.coords.latitude},${p.coords.longitude}`;updatePreview()},()=>alert('Izin lokasi tidak tersedia.'))}
+$('search').addEventListener('input',renderMenu);['type','location','contact','payment','cashInfo','notes'].forEach(id=>{$(id).addEventListener('input',updatePreview);$(id).addEventListener('change',updatePreview)});$('photo').addEventListener('change',updatePreview);renderTabs();renderMenu();renderCart();
+</script></body></html>
