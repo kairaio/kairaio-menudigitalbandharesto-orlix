@@ -40,65 +40,25 @@
   };
 
   window.renderCart = function renderCartUSD() {
-    const l = lines();
-    $('count').textContent = l.reduce((s,x)=>s+x.qty,0);
+    const l = lines(); $('count').textContent = l.reduce((s,x)=>s+x.qty,0);
     $('cartItems').innerHTML = l.length ? l.map(x => `<div class="cart-item"><img src="${photoFor(x)}" alt="${x.name}" referrerpolicy="no-referrer"><div><b>${x.name}</b><div>${x.price ? usd(x.price) : 'Tanya Harga'}</div></div><div class="qty"><button onclick="qty(${x.id},-1)">−</button><b>${x.qty}</b><button onclick="qty(${x.id},1)">+</button></div></div>`).join('') : 'Belum ada pesanan.';
     const s=subtotal(),p=promoQty(); $('subtotal').textContent=usd(s); $('total').textContent=usd(s); $('promoBox').innerHTML=p?`<div class="promo-ok">PROMO: GRATIS ${p}x menu bonus</div>`:''; updatePreview();
   };
 
-  const checkout = document.querySelector('.checkout');
-  if (checkout) {
-    const typeLabel = [...checkout.querySelectorAll('label')].find(l => l.textContent.trim() === 'Tipe');
-    if (typeLabel) {
-      const nameLabel = document.createElement('label'); nameLabel.textContent = 'Nama Pemesan';
-      const nameInput = document.createElement('input'); nameInput.id='customerName'; nameInput.placeholder='Masukkan nama pemesan'; nameInput.autocomplete='name';
-      typeLabel.before(nameLabel,nameInput); nameInput.addEventListener('input',updatePreview);
-    }
-    const locationInput=$('location'); if(locationInput){locationInput.readOnly=true;locationInput.placeholder='Aktifkan Live Location untuk mendapatkan lokasi GPS';}
-    const oldLocButton=checkout.querySelector('.loc');
-    if(oldLocButton){oldLocButton.textContent='📍 AKTIFKAN / PERBARUI LIVE LOCATION';oldLocButton.onclick=null;oldLocButton.addEventListener('click',startLiveLocation);const status=document.createElement('div');status.id='liveLocationStatus';status.className='live-location-status';status.textContent='Live Location belum aktif.';oldLocButton.after(status);}
-  }
+  const checkout=document.querySelector('.checkout');
+  if(checkout){const typeLabel=[...checkout.querySelectorAll('label')].find(l=>l.textContent.trim()==='Tipe');if(typeLabel){const nameLabel=document.createElement('label');nameLabel.textContent='Nama Pemesan';const nameInput=document.createElement('input');nameInput.id='customerName';nameInput.placeholder='Masukkan nama pemesan';nameInput.autocomplete='name';typeLabel.before(nameLabel,nameInput);nameInput.addEventListener('input',updatePreview);}const locationInput=$('location');if(locationInput){locationInput.readOnly=true;locationInput.placeholder='Aktifkan Live Location untuk mendapatkan lokasi GPS';}const oldLocButton=checkout.querySelector('.loc');if(oldLocButton){oldLocButton.textContent='📍 AKTIFKAN / PERBARUI LIVE LOCATION';oldLocButton.onclick=null;oldLocButton.addEventListener('click',startLiveLocation);const status=document.createElement('div');status.id='liveLocationStatus';status.className='live-location-status';status.textContent='Live Location belum aktif.';oldLocButton.after(status);}}
 
-  function savePosition(pos){
-    const {latitude,longitude,accuracy}=pos.coords;
-    const now=new Date();
-    const mapUrl=`https://maps.google.com/?q=${latitude},${longitude}`;
-    liveLocation={latitude,longitude,accuracy,capturedAt:now,mapUrl};
-    if($('location'))$('location').value=mapUrl;
-    const status=$('liveLocationStatus'); if(status)status.innerHTML=`🟢 <b>Live Location aktif</b><br>Akurasi ±${Math.round(accuracy)} m • Update ${now.toLocaleTimeString()}`;
-    updatePreview();
-  }
+  function savePosition(pos){const {latitude,longitude,accuracy}=pos.coords;const now=new Date();const mapUrl=`https://maps.google.com/?q=${latitude},${longitude}`;liveLocation={latitude,longitude,accuracy,capturedAt:now,mapUrl};if($('location'))$('location').value=mapUrl;const status=$('liveLocationStatus');if(status)status.innerHTML=`🟢 <b>Live Location aktif</b><br>Akurasi ±${Math.round(accuracy)} m • Update ${now.toLocaleTimeString()}`;updatePreview();}
+  function locationError(err){const status=$('liveLocationStatus');if(status)status.textContent=err.code===1?'🔴 Izin lokasi ditolak. Aktifkan izin lokasi browser untuk checkout.':'🔴 Lokasi terbaru belum didapat. Pastikan GPS aktif lalu coba lagi.';}
+  function startLiveLocation(){if(!navigator.geolocation){alert('Browser/perangkat ini tidak mendukung Live Location.');return;}const status=$('liveLocationStatus');if(status)status.textContent='Mencari lokasi GPS terbaru...';navigator.geolocation.getCurrentPosition(pos=>{savePosition(pos);if(liveWatchId!==null)navigator.geolocation.clearWatch(liveWatchId);liveWatchId=navigator.geolocation.watchPosition(savePosition,locationError,{enableHighAccuracy:true,maximumAge:15000,timeout:30000});},locationError,{enableHighAccuracy:true,maximumAge:0,timeout:30000});}
+  function validateCheckout(){if(!lines().length){alert('Tambahkan pesanan terlebih dahulu.');return false;}const name=$('customerName')?.value.trim();if(!name){alert('Masukkan Nama Pemesan terlebih dahulu.');$('customerName')?.focus();return false;}if(!liveLocation){alert('Aktifkan Live Location terlebih dahulu.');return false;}return true;}
 
-  function locationError(err){
-    const status=$('liveLocationStatus');
-    if(status)status.textContent=err.code===1?'🔴 Izin lokasi ditolak. Aktifkan izin lokasi browser untuk checkout.':'🔴 Lokasi terbaru belum didapat. Pastikan GPS aktif lalu coba lagi.';
-  }
+  window.message=function messageUSD(){const l=lines(),photo=$('photo').files?.[0]?.name||'Belum dilampirkan',name=$('customerName')?.value.trim()||'-';const gps=liveLocation?`${liveLocation.mapUrl}\nKoordinat : ${liveLocation.latitude.toFixed(6)}, ${liveLocation.longitude.toFixed(6)}\nAkurasi GPS : ±${Math.round(liveLocation.accuracy)} meter\nUpdate lokasi : ${liveLocation.capturedAt.toLocaleString()}`:'-';return `ORDER DEMO MENU DIGITAL RESTO\n\nNama Pemesan : ${name}\nTipe : ${$('type').value}\nLive Location : ${gps}\nFoto lokasi : ${photo}\nNomor Telepon/WhatsApp/Username Telegram : ${$('contact').value.trim()||'-'}\nPembayaran : ${$('payment').value}\nInfo jumlah jika kembalian : ${$('cashInfo').value.trim()||'-'}\n\nPesanan :\n${l.length?l.map((x,i)=>`${i+1}. ${x.name} x${x.qty} — ${usd(x.price*x.qty)}`).join('\n'):'-'}\n\nSubtotal : ${usd(subtotal())}\nPromo : ${promoQty()?`Gratis ${promoQty()} menu bonus`:'-'}\nTotal : ${usd(subtotal())}\n\nCatatan :\n${$('notes').value.trim()||'-'}`;};
 
-  function startLiveLocation(){
-    if(!navigator.geolocation){alert('Browser/perangkat ini tidak mendukung Live Location.');return;}
-    const status=$('liveLocationStatus'); if(status)status.textContent='Mencari lokasi GPS terbaru...';
-    navigator.geolocation.getCurrentPosition(pos=>{savePosition(pos);if(liveWatchId!==null)navigator.geolocation.clearWatch(liveWatchId);liveWatchId=navigator.geolocation.watchPosition(savePosition,locationError,{enableHighAccuracy:true,maximumAge:15000,timeout:30000});},locationError,{enableHighAccuracy:true,maximumAge:0,timeout:30000});
-  }
-
-  function validateCheckout(){
-    if(!lines().length){alert('Tambahkan pesanan terlebih dahulu.');return false;}
-    const name=$('customerName')?.value.trim(); if(!name){alert('Masukkan Nama Pemesan terlebih dahulu.');$('customerName')?.focus();return false;}
-    if(!liveLocation){alert('Aktifkan Live Location terlebih dahulu.');return false;}
-    return true;
-  }
-
-  window.message=function messageUSD(){
-    const l=lines(),photo=$('photo').files?.[0]?.name||'Belum dilampirkan',name=$('customerName')?.value.trim()||'-';
-    const gps=liveLocation?`${liveLocation.mapUrl}\nKoordinat : ${liveLocation.latitude.toFixed(6)}, ${liveLocation.longitude.toFixed(6)}\nAkurasi GPS : ±${Math.round(liveLocation.accuracy)} meter\nUpdate lokasi : ${liveLocation.capturedAt.toLocaleString()}`:'-';
-    return `ORDER DEMO MENU DIGITAL RESTO\n\nNama Pemesan : ${name}\nTipe : ${$('type').value}\nLive Location : ${gps}\nFoto lokasi : ${photo}\nNomor Telepon/WhatsApp/Username Telegram : ${$('contact').value.trim()||'-'}\nPembayaran : ${$('payment').value}\nInfo jumlah jika kembalian : ${$('cashInfo').value.trim()||'-'}\n\nPesanan :\n${l.length?l.map((x,i)=>`${i+1}. ${x.name} x${x.qty} — ${usd(x.price*x.qty)}`).join('\n'):'-'}\n\nSubtotal : ${usd(subtotal())}\nPromo : ${promoQty()?`Gratis ${promoQty()} menu bonus`:'-'}\nTotal : ${usd(subtotal())}\n\nCatatan :\n${$('notes').value.trim()||'-'}`;
-  };
-
-  window.sendTG=()=>{if(!validateCheckout())return;window.open(`https://t.me/kh_digital?text=${encodeURIComponent(message())}`,'_blank');};
+  window.sendTG=()=>{if(!validateCheckout())return;window.open(`https://t.me/khdigital2026?text=${encodeURIComponent(message())}`,'_blank');};
   window.sendWA=()=>{if(!validateCheckout())return;window.open(`https://wa.me/855964065246?text=${encodeURIComponent(message())}`,'_blank');};
 
   const cleanText=root=>{const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;while((node=walker.nextNode()))node.nodeValue=node.nodeValue.replace(/BANDHA\s*RESTO/gi,'DEMO RESTO').replace(/POIPET/gi,'');};cleanText(document.body);
-  document.querySelectorAll('.rule,.vc,.voucher p').forEach(el=>{el.innerHTML=el.innerHTML.replace(/(\d[\d.]*)B/g,(_,v)=>usd(Number(String(v).replace(/\./g,''))));});
-  document.title='DEMO MENU DIGITAL RESTO • Premium Digital Menu';const brand=document.querySelector('.brand');if(brand)brand.innerHTML='DEMO <span>Menu Digital Resto</span>';
-  const style=document.createElement('style');style.textContent=`.hero{background:linear-gradient(90deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.72) 58%,rgba(0,0,0,.25)),url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat!important}.hero:before{content:'👨‍🍳';position:absolute;left:26px;bottom:22px;width:118px;height:118px;border-radius:50%;display:grid;place-items:center;font-size:72px;background:rgba(255,255,255,.94);border:5px solid #fff;box-shadow:0 14px 38px #0009;z-index:2}.chef-strip{background:linear-gradient(90deg,#050505 0%,rgba(17,17,17,.9) 58%,rgba(0,0,0,.35)),url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1400&q=82') center/cover no-repeat!important;position:relative}.chef-strip:after{content:'👨‍🍳';position:absolute;right:28px;top:28px;font-size:82px;filter:drop-shadow(0 8px 12px #000)}.live-location-status{margin-top:7px;padding:9px 10px;border:1px solid #3b3b3b;border-radius:8px;background:#1b1b1b;color:#ddd;font-size:11px;line-height:1.45}#location[readonly]{opacity:.95;cursor:default}@media(max-width:650px){.hero:before{width:84px;height:84px;font-size:52px;left:18px;bottom:auto;top:126px}.chef-strip:after{font-size:58px;right:14px;top:16px}}`;document.head.appendChild(style);
-  renderMenu();renderCart();
+  document.querySelectorAll('.rule,.vc,.voucher p').forEach(el=>{el.innerHTML=el.innerHTML.replace(/(\d[\d.]*)B/g,(_,v)=>usd(Number(String(v).replace(/\./g,''))));});document.title='DEMO MENU DIGITAL RESTO • Premium Digital Menu';const brand=document.querySelector('.brand');if(brand)brand.innerHTML='DEMO <span>Menu Digital Resto</span>';
+  const style=document.createElement('style');style.textContent=`.hero{background:linear-gradient(90deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.72) 58%,rgba(0,0,0,.25)),url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat!important}.hero:before{content:'👨‍🍳';position:absolute;left:26px;bottom:22px;width:118px;height:118px;border-radius:50%;display:grid;place-items:center;font-size:72px;background:rgba(255,255,255,.94);border:5px solid #fff;box-shadow:0 14px 38px #0009;z-index:2}.chef-strip{background:linear-gradient(90deg,#050505 0%,rgba(17,17,17,.9) 58%,rgba(0,0,0,.35)),url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1400&q=82') center/cover no-repeat!important;position:relative}.chef-strip:after{content:'👨‍🍳';position:absolute;right:28px;top:28px;font-size:82px;filter:drop-shadow(0 8px 12px #000)}.live-location-status{margin-top:7px;padding:9px 10px;border:1px solid #3b3b3b;border-radius:8px;background:#1b1b1b;color:#ddd;font-size:11px;line-height:1.45}#location[readonly]{opacity:.95;cursor:default}@media(max-width:650px){.hero:before{width:84px;height:84px;font-size:52px;left:18px;bottom:auto;top:126px}.chef-strip:after{font-size:58px;right:14px;top:16px}}`;document.head.appendChild(style);renderMenu();renderCart();
 })();
